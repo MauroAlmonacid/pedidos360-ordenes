@@ -12,6 +12,7 @@ import jakarta.persistence.Table;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 @Entity
 @Table(name = "orden_items")
@@ -33,8 +34,9 @@ public class OrdenItem {
     @Column(name = "precio_unitario", nullable = false)
     private Double precioUnitario;
 
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "orden_id", nullable = false)
+    @JsonIgnore
+    @ManyToOne
+    @JoinColumn(name = "orden_id")
     private Orden orden;
 
 }
